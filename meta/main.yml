@@ -13,8 +13,7 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license:
-  - MIT
+  license: license (MIT)
   min_ansible_version: 1.2
   #
   # Below are all platforms currently available. Just uncomment
