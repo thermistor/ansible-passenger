@@ -1,1 +1,1 @@
-{{ passenger_user }} ALL=NOPASSWD: /usr/bin/passenger-config restart-app {{ passenger_app_path }} --ignore-app-not-running
+{{ passenger_user }} ALL=NOPASSWD: /usr/bin/env sudo /usr/bin/env passenger-config restart-app {{ passenger_app_path }} --ignore-app-not-running
