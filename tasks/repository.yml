@@ -1,0 +1,15 @@
+---
+
+# Needed for add-apt-repository
+- name: Install python-software-properties
+  apt: pkg=python-software-properties state=installed
+
+- name: Add the Passenger repository key
+  apt_key: url={{ passenger_repo_apt_key }} state=present
+
+- name: Apt via https
+  apt: name=apt-transport-https state=present
+
+- name: Add Passenger repository
+  apt_repository: repo='{{ passenger_repo }}' state=present
+
