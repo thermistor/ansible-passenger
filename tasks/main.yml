@@ -22,5 +22,5 @@
 - name: Install passenger.conf for nginx
   template: src=passenger.conf.j2 dest=/etc/nginx/conf.d/passenger.conf owner=root group=root mode=0644
 
-- name: Install the sudoers file that will allow app_user to restart passenger
-  template: src=sudoers_passenger.j2 dest=/etc/sudoers.d/{{ app_user }}_passenger owner=root group=root mode=0440
+- name: Install the sudoers file that will allow passenger_user to restart passenger
+  template: src=sudoers_passenger.j2 dest=/etc/sudoers.d/{{ passenger_user }}_passenger owner=root group=root mode=0440
