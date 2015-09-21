@@ -18,6 +18,12 @@ You must specify the `passenger_app_path` and will probably want to change the `
 
 Requires `ANXS.nginx` role.
 
+You need to add this to the vars for ANXS.nginx, `nginx_source_modules_included` dictionary should look something like:
+
+    nginx_source_modules_included:
+      \# <snip> your other ANXS.nginx configured modules here
+      passenger_module: "--add-module=/usr/share/passenger/ngx_http_passenger_module"
+
 ## Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
