@@ -26,12 +26,12 @@ You need to add this to the vars for ANXS.nginx, `nginx_source_modules_included`
 
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Here is an example configuration:
 
     - hosts: appservers
       roles:
         - { role: thermistor.passenger, tags: ['passenger'], passenger_app_path: '/srv/www/example.com/example_app', passenger_user: 'deploy' }
-        - { role: ANXS.nginx, tags: ['nginx'], nginx_source_version: 1.8.0, monit_protection: false, openssl_version: "1.0.2d" }
+        - { role: ANXS.nginx, tags: ['nginx'], nginx_source_version: 1.8.0, monit_protection: false, openssl_version: "1.0.2e" }
 
 
 ## License
