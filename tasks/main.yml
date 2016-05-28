@@ -23,4 +23,14 @@
   template: src=passenger.conf.j2 dest=/etc/nginx/conf.d/passenger.conf owner=root group=root mode=0644
 
 - name: Install the sudoers file that will allow passenger_user to restart passenger
-  template: src=sudoers_passenger.j2 dest=/etc/sudoers.d/{{ passenger_user }}_passenger owner=root group=root mode=0440
+  template: src=sudoers_passenger.{{ ansible_distribution_release }}.j2 dest=/etc/sudoers.d/{{ passenger_user }}_passenger owner=root group=root mode=0440
+
+# FIXME
+- name: Create tmp dir for passenger
+  file:
+    path: /var/run/passenger-instreg
+    owner: root
+    group: root
+    mode: 0777
+    recurse: yes
+    state: directory

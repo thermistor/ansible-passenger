@@ -3,3 +3,4 @@ passenger_repo_apt_key: http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprin
 passenger_repo: 'deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main'
 passenger_ruby: /usr/local/bin/ruby
 passenger_user: deploy
+passenger_tmp_dir: /var/run/passenger-instreg

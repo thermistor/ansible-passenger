@@ -1,0 +1,1 @@
+{{ passenger_user }} ALL=NOPASSWD: /usr/bin/env PASSENGER_INSTANCE_REGISTRY_DIR={{ passenger_tmp_dir }} passenger-config restart-app {{ passenger_app_path }} --ignore-app-not-running
