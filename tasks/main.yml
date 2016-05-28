@@ -31,6 +31,6 @@
     path: /var/run/passenger-instreg
     owner: root
     group: root
-    mode: 0777
+    mode: 1777
     recurse: yes
     state: directory
