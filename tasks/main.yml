@@ -22,5 +22,9 @@
 - name: Install passenger.conf for nginx
   template: src=passenger.conf.j2 dest=/etc/nginx/conf.d/passenger.conf owner=root group=root mode=0644
 
+- name: Create the /var/run/passenger-instreg on 16.04
+  file: path="{{ passenger_tmp_dir }}" state=directory
+  when: "'{{ ansible_distribution_release }}' == 'xenial'"
+
 - name: Install the sudoers file that will allow passenger_user to restart passenger
   template: src=sudoers_passenger.{{ ansible_distribution_release }}.j2 dest=/etc/sudoers.d/{{ passenger_user }}_passenger owner=root group=root mode=0440
