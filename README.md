@@ -4,15 +4,23 @@ An ansible galaxy role to install and configure passenger.
 
 ## Requirements
 
-You must specify the `passenger_app_path` and will probably want to change the `passenger_user` and `passenger_ruby` to suit.
+You must specify:
+* `passenger_app_path`
+
+You will probably want to change:
+* `passenger_user`
+* `passenger_ruby`
 
 ## Role Variables
 
 * `passenger_app_path` - the directory where the rails or rack app lives
 * `passenger_repo_apt_key` - the apt key for the passenger repo
 * `passenger_repo` - the passenger repo configuration for apt
-* `passenger_user` - username of that will be running passenger and executing the restart command
-* `passenger_ruby` - path to the ruby binary
+* `passenger_user` - username of that will be running passenger and executing the restart command, default is `deploy`
+* `passenger_ruby` - path to the ruby binary, default is `/usr/local/bin/ruby`
+* `passenger_pre_start_url` - used to pre start the app if present
+* `passenger_max_pool_size` - default is 3
+* `passenger_min_instances` - default is 3
 
 ## Dependencies
 
