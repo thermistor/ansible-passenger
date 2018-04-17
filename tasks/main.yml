@@ -24,7 +24,7 @@
 
 - name: Create the /var/run/passenger-instreg on 16.04
   file: path="{{ passenger_tmp_dir }}" state=directory
-  when: "'{{ ansible_distribution_release }}' == 'xenial'"
+  when: ansible_distribution_release == 'xenial'
 
 - name: Install the sudoers file that will allow passenger_user to restart passenger
   template: src=sudoers_passenger.{{ ansible_distribution_release }}.j2 dest=/etc/sudoers.d/{{ passenger_user }}_passenger owner=root group=root mode=0440
