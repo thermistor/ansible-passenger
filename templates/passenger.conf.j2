@@ -1,7 +1,5 @@
 passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
-{% if ansible_distribution_release == 'xenial' %}
 passenger_instance_registry_dir {{ passenger_tmp_dir }};
-{% endif %}
 passenger_ruby {{ passenger_ruby }};
 {% if passenger_pre_start_url %}
 passenger_pre_start {{ passenger_pre_start_url }};
