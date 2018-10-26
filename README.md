@@ -22,15 +22,17 @@ You will probably want to change:
 * `passenger_max_pool_size` - default is 3
 * `passenger_min_instances` - default is 3
 
+
 ## Dependencies
 
-Requires `ANXS.nginx` role with nginx configured to be built from source, but the `thermistor.passenger` role must be included before it.
+Requires `thermistor.nginx` role, but the `thermistor.passenger` role must be included before it.
 
-You need to add this to the vars for ANXS.nginx, `nginx_source_modules_included` dictionary should look something like:
+You need to add this to the vars for thermistor.nginx, `nginx_source_modules_included` dictionary should look something like:
 
     nginx_source_modules_included:
       \# <snip> your other ANXS.nginx configured modules here
       passenger_module: "--add-module=/usr/share/passenger/ngx_http_passenger_module"
+
 
 ## Example Playbook
 
@@ -38,11 +40,17 @@ Here is an example configuration:
 
     - hosts: appservers
       roles:
-        - { role: thermistor.passenger, tags: ['passenger'], passenger_app_path: '/srv/www/example.com/example_app', passenger_user: 'deploy' }
-        - { role: ANXS.nginx, tags: ['nginx'], nginx_source_version: 1.8.0, monit_protection: false, openssl_version: "1.0.2e" }
-
+        - role: thermistor.passenger
+          passenger_app_path: /srv/www/example.com/example_app
+          passenger_user: deploy
+          tags:
+            - passenger
+        - role: thermistor.nginx
+          nginx_source_version: 1.14.0
+          openssl_version: 1.2.0i
+          tags:
+            - nginx
 
 ## License
 
 Licensed under the MIT License. See the LICENSE file for details.
-

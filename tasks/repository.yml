@@ -1,8 +1,8 @@
 ---
 
 # Needed for add-apt-repository
-- name: Install python-software-properties
-  apt: pkg=python-software-properties state=latest
+- name: Install python3-software-properties
+  apt: pkg=python3-software-properties state=latest
 
 - name: Add the Passenger repository key
   apt_key: url={{ passenger_repo_apt_key }} state=present
