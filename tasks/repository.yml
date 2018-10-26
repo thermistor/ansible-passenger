@@ -12,4 +12,3 @@
 
 - name: Add Passenger repository
   apt_repository: repo='{{ passenger_repo }}' state=present
-
