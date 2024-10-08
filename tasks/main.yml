@@ -1,32 +1,45 @@
 ---
 
-- include: repository.yml
+- name: Import repository tasks
+  ansible.builtin.import_tasks: repository.yml
 
 - name: Install latest passenger
-  apt:
+  ansible.builtin.apt:
     state: latest
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
     name:
       - passenger
       - passenger-dev
   notify:
-    - restart nginx
+    - Restart nginx
 
 - name: Ensure nginx conf.d directory exists
-  file:
+  ansible.builtin.file:
     path: /etc/nginx/conf.d
     owner: root
     group: root
-    mode: 0755
-    recurse: yes
+    mode: '0755'
     state: directory
 
 - name: Install passenger.conf for nginx
-  template: src=passenger.conf.j2 dest=/etc/nginx/conf.d/passenger.conf owner=root group=root mode=0644
+  ansible.builtin.template:
+    src: passenger.conf.j2
+    dest: /etc/nginx/conf.d/passenger.conf
+    owner: root
+    group: root
+    mode: '0644'
 
-- name: Create the /var/run/passenger-instreg
-  file: path="{{ passenger_tmp_dir }}" state=directory
+- name: Create the /run/passenger-instreg
+  ansible.builtin.file:
+    path: "{{ passenger_tmp_dir }}"
+    state: directory
+    mode: '0755'
 
 - name: Install the sudoers file that will allow passenger_user to restart passenger
-  template: src=sudoers_passenger.j2 dest=/etc/sudoers.d/{{ passenger_user }}_passenger owner=root group=root mode=0440
+  ansible.builtin.template:
+    src: sudoers_passenger.j2
+    dest: /etc/sudoers.d/{{ passenger_user }}_passenger
+    owner: root
+    group: root
+    mode: '0440'

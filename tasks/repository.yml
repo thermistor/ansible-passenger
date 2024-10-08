@@ -2,13 +2,22 @@
 
 # Needed for add-apt-repository
 - name: Install python3-software-properties
-  apt: pkg=python3-software-properties state=latest
+  ansible.builtin.apt:
+    pkg:
+      - python3-software-properties
+    state: latest
 
 - name: Add the Passenger repository key
-  apt_key: url={{ passenger_repo_apt_key }} state=present
+  ansible.builtin.apt_key:
+    url: "{{ passenger_repo_apt_key }}"
+    state: present
 
 - name: Apt via https
-  apt: pkg=apt-transport-https state=latest
+  ansible.builtin.apt:
+    pkg: apt-transport-https
+    state: latest
 
 - name: Add Passenger repository
-  apt_repository: repo='{{ passenger_repo }}' state=present
+  ansible.builtin.apt_repository:
+    repo: "{{ passenger_repo }}"
+    state: present

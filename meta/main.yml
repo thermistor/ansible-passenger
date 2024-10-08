@@ -1,16 +1,17 @@
 ---
 galaxy_info:
+  role_name: passenger
+  namespace: thermistor
   author: Weston Triemstra
   description: Install and configure Passenger
   company: Netsign
   license: MIT
-  min_ansible_version: 1.2
+  min_ansible_version: 2.16
 
   platforms:
     - name: Ubuntu
       versions:
-        - xenial
-        - bionic
+        - jammy
 
   galaxy_tags:
     - passenger
