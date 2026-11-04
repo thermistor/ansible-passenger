@@ -1,23 +1,31 @@
 ---
 
-# Needed for add-apt-repository
-- name: Install python3-software-properties
+# Needed for deb822_repository
+- name: Install python3-debian
   ansible.builtin.apt:
-    pkg:
-      - python3-software-properties
-    state: latest
-
-- name: Add the Passenger repository key
-  ansible.builtin.apt_key:
-    url: "{{ passenger_repo_apt_key }}"
+    pkg: python3-debian
     state: present
 
-- name: Apt via https
-  ansible.builtin.apt:
-    pkg: apt-transport-https
-    state: latest
+- name: Download the Passenger repository signing key
+  ansible.builtin.get_url:
+    url: "{{ passenger_repo_key_url }}"
+    dest: /etc/apt/keyrings/passenger.asc
+    owner: root
+    group: root
+    mode: '0644'
 
 - name: Add Passenger repository
-  ansible.builtin.apt_repository:
-    repo: "{{ passenger_repo }}"
+  ansible.builtin.deb822_repository:
+    name: passenger
+    types: deb
+    uris: "{{ passenger_repo_uri }}"
+    suites: "{{ passenger_repo_suite }}"
+    components: main
+    signed_by: /etc/apt/keyrings/passenger.asc
     state: present
+  register: passenger_repository
+
+- name: Update apt cache if the Passenger repository changed
+  ansible.builtin.apt:
+    update_cache: true
+  when: passenger_repository is changed # noqa: no-handler

@@ -14,8 +14,9 @@ You will probably want to change:
 ## Role Variables
 
 * `passenger_app_path` - the directory where the rails or rack app lives
-* `passenger_repo_apt_key` - the apt key for the passenger repo
-* `passenger_repo` - the passenger repo configuration for apt
+* `passenger_repo_key_url` - URL of the signing key for the passenger repo
+* `passenger_repo_uri` - URI of the passenger apt repo
+* `passenger_repo_suite` - suite of the passenger apt repo, default is the distribution codename
 * `passenger_user` - username of that will be running passenger and executing the restart command, default is `deploy`
 * `passenger_ruby` - path to the ruby binary, default is `/usr/local/bin/ruby`
 * `passenger_pre_start_url` - used to pre start the app if present

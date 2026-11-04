@@ -1,6 +1,7 @@
 ---
-passenger_repo_apt_key: https://oss-binaries.phusionpassenger.com/auto-software-signing-gpg-key-2025.txt
-passenger_repo: 'deb https://oss-binaries.phusionpassenger.com/apt/passenger {{ ansible_distribution_release }} main'
+passenger_repo_key_url: https://oss-binaries.phusionpassenger.com/auto-software-signing-gpg-key-2025.txt
+passenger_repo_uri: https://oss-binaries.phusionpassenger.com/apt/passenger
+passenger_repo_suite: "{{ ansible_facts['distribution_release'] }}"
 passenger_ruby: /usr/local/bin/ruby
 passenger_user: deploy
 passenger_tmp_dir: /run/passenger-instreg
